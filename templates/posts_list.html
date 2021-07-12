@@ -3,15 +3,34 @@
 {% block title %}Posts{% endblock title %}
 
 {% block content %}
-    <h1>Message Board Application</h1>
-    {% for post in all_posts_list %}
-        <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ post.id }}</h5>
-            <p class="card-text">{{ post.text }}</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-        </div>
-    {% endfor %}
+<div class="container">
+    <h1 class="text-center">Message Board Application</h1>
+    <div class="row">
+        <table class="table table-borderless">
+            <tr>
+        {% for post in all_posts_list %}
+            {% if forloop.counter|divisibleby:4 %}
+            </tr>
+                <td>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Post {{ post.id }}</h5>
+                            <p class="card-text">{{ post.text }}</p>
+                        </div>
+                    </div>
+                </td>                   
+            {% else %}
+            <td>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Post {{ post.id }}</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                    </div>
+                </div>
+            </td>
+            {% endif %}
+        {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock content %}
